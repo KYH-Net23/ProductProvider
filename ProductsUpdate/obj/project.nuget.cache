@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XLrQt7Ak1rI=",
+  "dgSpecHash": "nJfArkfboUU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\tuya_\\Source\\Repos\\ProductsRepo\\ProductsUpdate\\ProductsUpdate.csproj",
+  "projectFilePath": "C:\\Users\\tuya_\\source\\repos\\ProductsRepo\\ProductsUpdate\\ProductsUpdate.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tuya_\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\tuya_\\.nuget\\packages\\microsoft.openapi\\1.6.14\\microsoft.openapi.1.6.14.nupkg.sha512",

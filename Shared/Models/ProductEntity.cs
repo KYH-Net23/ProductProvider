@@ -6,8 +6,8 @@ namespace Shared.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public string Title { get; set; } = null!;
+        public string Brand { get; set; } = null!;
+        public string? Model { get; set; }
         public string? Description { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = "Price cannot be lower than 0.")]
         public decimal Price { get; set; }

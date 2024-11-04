@@ -1,0 +1,8 @@
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.csproj.AssemblyReference.cache
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.AssemblyInfoInputs.cache
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.AssemblyInfo.cs
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.csproj.CoreCompileInputs.cache
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Kicker\Source\Repos\ProductsRepo\ProductsDelete\obj\Debug\net8.0\ProductsDelete.sourcelink.json

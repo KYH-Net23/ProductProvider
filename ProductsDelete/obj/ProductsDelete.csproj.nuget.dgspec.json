@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj": {}
+    "C:\\Users\\Kicker\\Source\\Repos\\ProductsRepo\\ProductsDelete\\ProductsDelete.csproj": {}
   },
   "projects": {
-    "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj": {
+    "C:\\Users\\Kicker\\Source\\Repos\\ProductsRepo\\ProductsDelete\\ProductsDelete.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj",
+        "projectUniqueName": "C:\\Users\\Kicker\\Source\\Repos\\ProductsRepo\\ProductsDelete\\ProductsDelete.csproj",
         "projectName": "ProductsDelete",
-        "projectPath": "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj",
-        "packagesPath": "C:\\Users\\Wille\\.nuget\\packages\\",
-        "outputPath": "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\obj\\",
+        "projectPath": "C:\\Users\\Kicker\\Source\\Repos\\ProductsRepo\\ProductsDelete\\ProductsDelete.csproj",
+        "packagesPath": "C:\\Users\\Kicker\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kicker\\Source\\Repos\\ProductsRepo\\ProductsDelete\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Wille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kicker\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

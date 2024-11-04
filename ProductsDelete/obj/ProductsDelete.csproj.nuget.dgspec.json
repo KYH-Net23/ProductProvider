@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\source\\repos\\ProductsSolution\\Shared\\Shared.csproj": {}
+    "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj": {}
   },
   "projects": {
-    "E:\\source\\repos\\ProductsSolution\\Shared\\Shared.csproj": {
+    "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\source\\repos\\ProductsSolution\\Shared\\Shared.csproj",
-        "projectName": "Shared",
-        "projectPath": "E:\\source\\repos\\ProductsSolution\\Shared\\Shared.csproj",
+        "projectUniqueName": "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj",
+        "projectName": "ProductsDelete",
+        "projectPath": "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\ProductsDelete.csproj",
         "packagesPath": "C:\\Users\\Wille\\.nuget\\packages\\",
-        "outputPath": "E:\\source\\repos\\ProductsSolution\\Shared\\obj\\",
+        "outputPath": "E:\\source\\repos\\ProductsSolution\\ProductsDelete\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,28 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.9.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,6 +83,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

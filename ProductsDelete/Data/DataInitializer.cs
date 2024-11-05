@@ -13,18 +13,6 @@ namespace ProductsDelete.Data
         {
             _dbContext = dbContext;
         }
-
-        private void SeedData()
-        {
-            if (!_dbContext.products.Any())
-            {
-                _dbContext.AddRange(
-                    new Products { Name = "Abdin", Title = "Title"},
-                    new Products { Name = "Anton", Title = "Title" },
-                    new Products { Name = "Jonas", Title = "Title" }
-                );
-            }
-        }
     }
 
 }

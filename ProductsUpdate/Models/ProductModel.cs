@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Shared.Models
+namespace ProductsUpdate.Models
 {
-    public class ProductEntity
+    public class ProductModel
     {
-        [Key]
-        public int Id { get; set; }
         public string Brand { get; set; } = null!;
         public string Model { get; set; } = null!;
         public string? Description { get; set; }

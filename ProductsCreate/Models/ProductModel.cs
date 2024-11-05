@@ -5,7 +5,7 @@ namespace CreateProducts.Models
     public class ProductModel
     {
         public string Brand { get; set; } = null!;
-        public string? Model { get; set; }
+        public string Model { get; set; } = null!;
         public string? Description { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = "Price cannot be lower than 0.")]
         public decimal Price { get; set; }
@@ -13,6 +13,5 @@ namespace CreateProducts.Models
         public string Image { get; set; } = null!;
         public int Stock { get; set; }
         public string? Size { get; set; }
-        public DateOnly AddedDate { get; set; } = DateOnly.MaxValue;
     }
 }

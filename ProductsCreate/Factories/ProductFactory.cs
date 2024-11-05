@@ -1,9 +1,10 @@
 ﻿using CreateProducts.Models;
+using ProductsCreate.Interfaces;
 using Shared.Models;
 
 namespace CreateProducts.Factories
 {
-    public class ProductFactory
+    public class ProductFactory : IProductFactory
     {
         public ProductEntity Create(ProductModel model)
         {
@@ -16,8 +17,7 @@ namespace CreateProducts.Factories
                 Category = model.Category,
                 Image = model.Image,
                 Stock = model.Stock,
-                Size = model.Size,
-                AddedDate = model.AddedDate
+                Size = model.Size
             };
 
             return productEntity;

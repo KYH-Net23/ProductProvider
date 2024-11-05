@@ -1,4 +1,6 @@
-using Shared.Models;
+using Microsoft.EntityFrameworkCore;
+using ProductsReadAll.Data;
+using ProductsReadAll.Factories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
@@ -18,44 +22,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-List<ProductEntity> productList = [
-    new ProductEntity
-    {
-        Id = 0,
-        Name = "Aloha T-shirt",
-        Title = "Kimmo Style",
-        Price = 420m,
-        Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
-    },
-    new ProductEntity
-    {
-        Id = 1,
-        Name = "Aloha Hot pants",
-        Title = "Kimmo Style",
-        Price = 69m,
-        Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
-    },
-    new ProductEntity
-    {
-        Id = 2,
-        Name = "Aloha String Bikini",
-        Title = "Kimmo Style",
-        Price = 9001m,
-        Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
-    },
-    new ProductEntity
-    {
-        Id = 3,
-        Name = "Aloha Mankini",
-        Title = "Kimmo Style",
-        Price = 1234m,
-        Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
-    },
-  ];
-
-app.MapGet("/Products", () =>
+app.MapGet("/Products", async (ProductDbContext dbContext) =>
 {
-    return productList;
+    var products = await dbContext.Products.ToListAsync();
+    return ProductViewModelFactory.GetProducts(products);
 })
 .WithName("GetAll")
 .WithOpenApi();

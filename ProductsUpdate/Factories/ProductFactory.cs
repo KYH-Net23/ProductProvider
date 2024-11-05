@@ -3,9 +3,9 @@ using Shared.Models;
 
 namespace ProductsUpdate.Factories
 {
-    public class ProductFactory
+    public static class ProductFactory
     {
-        public ProductEntity Create(ProductModel model)
+        public static ProductEntity Create(ProductModel model)
         {
             var entity = new ProductEntity
             {
@@ -21,7 +21,7 @@ namespace ProductsUpdate.Factories
             };
             return entity;
         }
-        public ProductModel Create(ProductEntity entity)
+        public static ProductModel Create(ProductEntity entity)
         {
             var model = new ProductModel
             {
@@ -36,6 +36,18 @@ namespace ProductsUpdate.Factories
                 AddedDate = entity.AddedDate,
             };
             return model;
+        }
+        public static void MapExistingEntityFromModel(ref ProductEntity entity, ProductModel model)
+        {
+            entity.Brand = model.Brand;
+            entity.Model = model.Model;
+            entity.Description = model.Description;
+            entity.Price = model.Price;
+            entity.Category = model.Category;
+            entity.Image = model.Image;
+            entity.Stock = model.Stock;
+            entity.Size = model.Size;
+            entity.AddedDate = model.AddedDate;
         }
     }
 }

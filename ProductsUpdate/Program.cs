@@ -19,8 +19,8 @@ namespace ProductsUpdate
             builder.Services.AddDbContext<ProductDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddScoped<ProductRepository>();
-            builder.Services.AddScoped<ProductFactory>();
+            builder.Services.AddTransient<ProductRepository>();
+            //builder.Services.AddScoped<ProductFactory>();
 
             builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {

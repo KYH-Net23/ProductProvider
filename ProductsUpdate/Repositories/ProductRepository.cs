@@ -17,10 +17,5 @@ namespace ProductsUpdate.Repositories
             var result = await _context.SaveChangesAsync();
             return result > 0;
         }
-        public void Attach(ProductEntity entity)
-        {
-            _context.Products.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-        }
     }
 }

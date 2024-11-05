@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectsAPI.Models;
+using ProductsDelete.Models;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

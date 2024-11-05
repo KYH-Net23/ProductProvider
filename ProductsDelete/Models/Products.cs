@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProjectsAPI.Models
+namespace ProductsDelete.Models
 {
     public class Products
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectsAPI.Models;
+using ProductsDelete.Models;
 
 
 namespace ProductsDelete.Data

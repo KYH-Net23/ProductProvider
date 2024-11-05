@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
@@ -27,7 +28,8 @@ builder.Services.AddDbContext<ProductDbContext>(options =>
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.MapControllers();
 
 app.Run();

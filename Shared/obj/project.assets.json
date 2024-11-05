@@ -4040,23 +4040,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Crist\\.nuget\\packages\\": {},
+    "C:\\Users\\gusta\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Crist\\Source\\Repos\\ProductsRepo\\Shared\\Shared.csproj",
+      "projectUniqueName": "C:\\Users\\gusta\\Source\\Repos\\ProductsRepo\\Shared\\Shared.csproj",
       "projectName": "Shared",
-      "projectPath": "C:\\Users\\Crist\\Source\\Repos\\ProductsRepo\\Shared\\Shared.csproj",
-      "packagesPath": "C:\\Users\\Crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Crist\\Source\\Repos\\ProductsRepo\\Shared\\obj\\",
+      "projectPath": "C:\\Users\\gusta\\Source\\Repos\\ProductsRepo\\Shared\\Shared.csproj",
+      "packagesPath": "C:\\Users\\gusta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gusta\\Source\\Repos\\ProductsRepo\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gusta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

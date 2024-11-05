@@ -1,6 +1,6 @@
 @ProductsCreate_HostAddress = http://localhost:5071
 
-GET {{ProductsCreate_HostAddress}}/weatherforecast/
+GET {{ProductsCreate_HostAddress}}/ProductsCreate/
 Accept: application/json
 
 ###

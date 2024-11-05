@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Shared.Models
+namespace CreateProducts.Models
 {
-    public class ProductEntity
+    public class ProductModel
     {
-        [Key]
-        public int Id { get; set; }
         public string Brand { get; set; } = null!;
         public string? Model { get; set; }
         public string? Description { get; set; }
@@ -15,6 +13,6 @@ namespace Shared.Models
         public string Image { get; set; } = null!;
         public int Stock { get; set; }
         public string? Size { get; set; }
-        public DateOnly AddedDate { get; set; }
+        public DateOnly AddedDate { get; set; } = DateOnly.MaxValue;
     }
 }

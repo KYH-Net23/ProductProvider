@@ -5,16 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CreateProducts.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CreateProductController : ControllerBase
     {
-        private readonly ProductService _productService;
+        private readonly ProductService _productService = null!;
 
         [HttpPost]
-        public async Task CreateProduct(ProductModel model)
+        public async Task<ActionResult> CreateProduct(ProductModel model)
         {
            await _productService.CreateNewProduct(model);
+           return Ok();
         }
     }
 }

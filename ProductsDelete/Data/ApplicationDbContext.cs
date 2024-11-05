@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjectsAPI.Models;
 
 
 namespace ProductsDelete.Data
@@ -9,7 +10,7 @@ namespace ProductsDelete.Data
         {
         }
 
-        //public DbSet<Products> projects { get; set; }
+        public DbSet<Products> products { get; set; }
     }
 
 }

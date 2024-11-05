@@ -13,5 +13,33 @@ namespace ProductsDelete.Data
         {
             _dbContext = dbContext;
         }
+        public void MigrateData()
+        {
+            if (_dbContext.Database.CanConnect())
+            {
+                _dbContext.Database.EnsureDeleted();
+                _dbContext.Database.EnsureCreated();
+            }
+            else
+            {
+                _dbContext.Database.Migrate();
+            }
+
+            SeedData();
+            _dbContext.SaveChanges();
+        }
+
+        private void SeedData()
+        {
+            if (!_dbContext.products.Any())
+            {
+                _dbContext.AddRange(
+                    new Products { Name = "Abdin", Title = "Title"},
+                    new Products { Name = "Anton", Title = "Title" },
+                    new Products { Name = "Jonas", Title = "Title" }
+                );
+            }
+        }
     }
+
 }

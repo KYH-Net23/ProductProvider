@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProductsDelete.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
@@ -21,6 +22,12 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// Initialize the database
+using (var scope = app.Services.CreateScope())
+{
+    scope.ServiceProvider.GetService<DataInitializer>().MigrateData();
+}
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())

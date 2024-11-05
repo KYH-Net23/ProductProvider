@@ -1,12 +1,16 @@
+using CreateProducts.Factories;
 using CreateProducts.Interfaces;
 using CreateProducts.Repository;
 using CreateProducts.Services;
 using Microsoft.EntityFrameworkCore;
+using ProductsCreate.Interfaces;
 using Shared.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -19,6 +23,7 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductFactory, ProductFactory>();
 
 builder.Services.AddDbContext<ProductDbContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -27,7 +32,8 @@ builder.Services.AddDbContext<ProductDbContext>(options =>
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.MapControllers();
 
 app.Run();

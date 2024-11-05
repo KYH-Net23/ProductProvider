@@ -17,7 +17,6 @@ namespace CreateProducts.Repository
         {
             await _context.Products.AddAsync(entity);
             await _context.SaveChangesAsync();
-
         }
     }
 }

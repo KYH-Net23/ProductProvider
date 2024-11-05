@@ -15,6 +15,6 @@ namespace Shared.Models
         public string Image { get; set; } = null!;
         public int Stock { get; set; }
         public string? Size { get; set; }
-        public DateOnly AddedDate { get; set; }
+        public DateOnly AddedDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
     }
 }

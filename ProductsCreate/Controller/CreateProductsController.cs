@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CreateProducts.Models;
+using CreateProducts.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CreateProducts.Controllers
@@ -7,14 +9,12 @@ namespace CreateProducts.Controllers
     [ApiController]
     public class CreateProductController : ControllerBase
     {
+        private readonly ProductService _productService;
+
         [HttpPost]
-        public IActionResult CreateProduct()
+        public async Task CreateProduct(ProductModel model)
         {
-
-            return null!;
-
-
-
+           await _productService.CreateNewProduct(model);
         }
     }
 }

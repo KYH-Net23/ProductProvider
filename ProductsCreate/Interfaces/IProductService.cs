@@ -4,6 +4,6 @@ namespace CreateProducts.Interfaces
 {
     public interface IProductService
     {
-        public void CreateNewProduct(ProductModel model);
+        public Task CreateNewProduct(ProductModel model);
     }
 }

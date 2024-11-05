@@ -10,12 +10,26 @@ namespace ProductsUpdate.Repositories
 
         public async Task<ProductEntity?> GetProduct(int id)
         {
-            return await _context.Products.FindAsync(id);
+            try
+            {
+                return await _context.Products.FindAsync(id);
+            }
+            catch
+            {
+                return null!;
+            }
         }
         public async Task<bool> SaveAsync()
         {
-            var result = await _context.SaveChangesAsync();
-            return result > 0;
+            try
+            {
+                var result = await _context.SaveChangesAsync();
+                return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

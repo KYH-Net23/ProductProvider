@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProductsUpdate.Factories;
 using ProductsUpdate.Repositories;
+using ProductsUpdate.Services;
 using Shared.Contexts;
 
 namespace ProductsUpdate
@@ -20,7 +21,7 @@ namespace ProductsUpdate
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddTransient<ProductRepository>();
-            //builder.Services.AddScoped<ProductFactory>();
+            builder.Services.AddTransient<ProductService>();
 
             builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {

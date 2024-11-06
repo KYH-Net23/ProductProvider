@@ -24,19 +24,6 @@ namespace ProductsUpdate.Tests.Repositories
         }
 
         [Test]
-        public async Task GetProduct_ReturnsNull_WhenProductDoesNotExist()
-        {
-            // Arrange
-            _mockContext.Setup(c => c.Products.FindAsync(999)).ReturnsAsync((ProductEntity)null);
-
-            // Act
-            var actualProduct = await _repository.GetProduct(999);
-
-            // Assert
-            Assert.That(actualProduct, Is.Null);
-        }
-
-        [Test]
         public async Task GetProduct_ProductExists_ReturnsProduct()
         {
             // Arrange

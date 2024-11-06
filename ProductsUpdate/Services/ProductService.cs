@@ -16,31 +16,24 @@ namespace ProductsUpdate.Services
                 int statusCode = -1;
                 var existingProductEntity = await _repository.GetProduct(id);
 
-                if (existingProductEntity == null)
-                {
-                    Console.WriteLine("Product not found");
-                }
-                else
+                if (existingProductEntity != null)
                 {
                     ProductFactory.MapExistingEntityFromModel(ref existingProductEntity, model);
                     var result = await _repository.SaveAsync();
                     if (result)
                     {
                         statusCode = 1;
-                        Console.WriteLine("Product updated successfully");
                     }
                     else
                     {
                         statusCode = 0;
-                        Console.WriteLine("Product was not updated due to no changes or an error.");
                     }
                 }
                 return statusCode;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine($"Error updating product: {ex.Message}");
-                return 0;
+                return 2;
             }
         }
     }

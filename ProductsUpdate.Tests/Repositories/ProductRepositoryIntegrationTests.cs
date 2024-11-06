@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Moq;
 using ProductsUpdate.Repositories;
 using Shared.Contexts;
 using Shared.Models;
@@ -11,47 +10,45 @@ using System.Threading.Tasks;
 
 namespace ProductsUpdate.Tests.Repositories
 {
-    public class ProductRepositoryTests
+    public class ProductRepositoryIntegrationTests
     {
-        private Mock<ProductDbContext> _mockContext;
-        private Mock<DbSet<ProductEntity>> _mockProducts;
+        private ProductDbContext _context;
         private ProductRepository _repository;
 
         [SetUp]
         public void Setup()
         {
-            // Mock the DbContext and DbSet
-            _mockContext = new Mock<ProductDbContext>(MockBehavior.Default);
-            _mockProducts = new Mock<DbSet<ProductEntity>>();
-
-            // Set up the DbContext to return the mocked DbSet
-            _mockContext.Setup(m => m.Products).Returns(_mockProducts.Object);
-
-            // Create the repository with the mocked DbContext
-            _repository = new ProductRepository(_mockContext.Object);
+            var options = new DbContextOptionsBuilder<ProductDbContext>().UseSqlServer("Server=tcp:rika-solutions.database.windows.net,1433;Initial Catalog=ProductDB;PersistSecurityInfo=False;User ID=product-rika;Password=kyh23net!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;").Options;
+            _context = new ProductDbContext(options);
+            _repository = new(_context);
+        }
+        [TearDown]
+        public void Teardown()
+        {
+            _context.Dispose();
         }
 
         [Test]
         public async Task GetProduct_ProductExists_ReturnsProduct()
         {
             // Arrange
-            var product = new ProductEntity { Id = 1, Brand = "Prada" };
-            _mockProducts.Setup(p => p.FindAsync(product.Id)).ReturnsAsync(product);
+            var productId = 3;
+
 
             // Act
-            var result = await _repository.GetProduct(product.Id);
+            var result = await _repository.GetProduct(productId);
 
             // Assert
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Brand, Is.EqualTo("Prada"));
+            Assert.That(result!.Id, Is.EqualTo(productId));
+
         }
 
         [Test]
         public async Task GetProduct_ProductDoesNotExists_ReturnsNull()
         {
             // Arrange
-            var productId = 1;
-            _mockProducts.Setup(p => p.FindAsync(productId)).ReturnsAsync((ProductEntity)null!);
+            var productId = 0;
 
             // Act
             var result = await _repository.GetProduct(productId);
@@ -59,25 +56,34 @@ namespace ProductsUpdate.Tests.Repositories
             // Assert
             Assert.That(result, Is.Null);
         }
+
         [Test]
         public async Task SaveAsync_SuccessfulChanges_ReturnsTrue()
         {
             // Arrange
-            _mockContext.Setup(m => m.SaveChangesAsync(It.IsAny<CancellationToken>())).ReturnsAsync(1);
+            var productId = 3;
+            var oldPrice = 399.90m;
+            var newPrice = 299.90m;
+            var product = await _repository.GetProduct(productId);
 
             // Act
+            if (product!.Price == oldPrice)
+                product!.Price = newPrice;
+            else
+                product!.Price = oldPrice;
+
             var result = await _repository.SaveAsync();
 
             // Assert
-            Assert.That(result, Is.True);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Is.True);
+                Assert.That(oldPrice, Is.Not.EqualTo(newPrice));
+            });
         }
-
         [Test]
         public async Task SaveAsync_NoChanges_Or_Error_ReturnsFalse()
         {
-            // Arrange
-            _mockContext.Setup(m => m.SaveChangesAsync(It.IsAny<CancellationToken>())).ReturnsAsync(0);
-
             // Act
             var result = await _repository.SaveAsync();
 

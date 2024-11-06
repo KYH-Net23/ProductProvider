@@ -41,7 +41,7 @@ namespace ProductsUpdate.Tests.Services
             var result = await service.UpdateProductAsync(1, productModel);
 
             //Assert
-            Assert.AreEqual(1, result);
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace ProductsUpdate.Tests.Services
             var result = await service.UpdateProductAsync(1, new ProductModel());
 
             //Assert
-            Assert.AreEqual(-1, result);
+            Assert.That(result, Is.EqualTo(-1));
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace ProductsUpdate.Tests.Services
             var result = await service.UpdateProductAsync(1, productModel);
 
             //Assert 
-            Assert.AreEqual(0, result);
+            Assert.That(result, Is.EqualTo(0));
         }
     }
 }

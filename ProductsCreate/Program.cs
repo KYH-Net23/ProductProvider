@@ -1,34 +1,41 @@
+using CreateProducts.Factories;
+using CreateProducts.Interfaces;
+using CreateProducts.Repository;
+using CreateProducts.Services;
+using Microsoft.EntityFrameworkCore;
+using ProductsCreate.Interfaces;
+using Shared.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddControllers();
+
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+{
+    builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+}));
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductFactory, ProductFactory>();
+
+builder.Services.AddDbContext<ProductDbContext>(options =>
+           options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+app.UseSwagger();
+app.UseSwaggerUI();
+app.MapControllers();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+

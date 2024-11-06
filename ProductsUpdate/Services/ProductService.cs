@@ -1,17 +1,13 @@
 ﻿using ProductsUpdate.Factories;
+using ProductsUpdate.Interfaces;
 using ProductsUpdate.Models;
 using ProductsUpdate.Repositories;
 
 namespace ProductsUpdate.Services
 {
-    public class ProductService
+    public class ProductService(IProductRepository repository) : IProductService
     {
-        private readonly ProductRepository _repository;
-
-        public ProductService(ProductRepository repository)
-        {
-            _repository = repository;
-        }
+        private readonly IProductRepository _repository = repository;
 
         public async Task<int> UpdateProductAsync(int id, ProductModel model)
         {

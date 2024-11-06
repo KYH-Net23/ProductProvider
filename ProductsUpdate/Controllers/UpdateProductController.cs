@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductsUpdate.Factories;
+using ProductsUpdate.Interfaces;
 using ProductsUpdate.Models;
 using ProductsUpdate.Repositories;
 using ProductsUpdate.Services;
@@ -10,9 +11,9 @@ namespace ProductsUpdate.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UpdateProductController(ProductService service) : ControllerBase
+    public class UpdateProductController(IProductService service) : ControllerBase
     {
-        private readonly ProductService _service = service;
+        private readonly IProductService _service = service;
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductModel updateProduct)

@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductsUpdate.Interfaces;
 using Shared.Contexts;
 using Shared.Models;
 
 namespace ProductsUpdate.Repositories
 {
-    public class ProductRepository(ProductDbContext context)
+    public class ProductRepository(ProductDbContext context) : IProductRepository
     {
         private readonly ProductDbContext _context = context;
 

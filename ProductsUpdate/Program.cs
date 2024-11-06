@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using ProductsUpdate.Factories;
+using ProductsUpdate.Interfaces;
 using ProductsUpdate.Repositories;
 using ProductsUpdate.Services;
 using Shared.Contexts;
@@ -20,8 +21,8 @@ namespace ProductsUpdate
             builder.Services.AddDbContext<ProductDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddTransient<ProductRepository>();
-            builder.Services.AddTransient<ProductService>();
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddTransient<IProductService, ProductService>();
 
             builder.Services.AddCors(o =>
             o.AddPolicy("AllowLocalhost5173",

@@ -14,21 +14,26 @@ namespace ProductsUpdate.Tests.Repositories
     public class ProductRepositoryTests
     {
         private Mock<ProductDbContext> _mockContext;
-        private Mock<DbSet<ProductEntity>> _mockProducts;
         private ProductRepository _repository;
 
         [SetUp]
         public void Setup()
         {
-            // Mock the DbContext and DbSet
-            _mockContext = new Mock<ProductDbContext>(MockBehavior.Default);
-            _mockProducts = new Mock<DbSet<ProductEntity>>();
-
-            // Set up the DbContext to return the mocked DbSet
-            _mockContext.Setup(m => m.Products).Returns(_mockProducts.Object);
-
-            // Create the repository with the mocked DbContext
+            _mockContext = new Mock<ProductDbContext>();
             _repository = new ProductRepository(_mockContext.Object);
+        }
+
+        [Test]
+        public async Task GetProduct_ReturnsNull_WhenProductDoesNotExist()
+        {
+            // Arrange
+            _mockContext.Setup(c => c.Products.FindAsync(999)).ReturnsAsync((ProductEntity)null);
+
+            // Act
+            var actualProduct = await _repository.GetProduct(999);
+
+            // Assert
+            Assert.That(actualProduct, Is.Null);
         }
 
         [Test]
@@ -36,7 +41,7 @@ namespace ProductsUpdate.Tests.Repositories
         {
             // Arrange
             var product = new ProductEntity { Id = 1, Brand = "Prada" };
-            _mockProducts.Setup(p => p.FindAsync(product.Id)).ReturnsAsync(product);
+            _mockContext.Setup(c => c.Products.FindAsync(1)).ReturnsAsync(product);
 
             // Act
             var result = await _repository.GetProduct(product.Id);
@@ -51,7 +56,7 @@ namespace ProductsUpdate.Tests.Repositories
         {
             // Arrange
             var productId = 1;
-            _mockProducts.Setup(p => p.FindAsync(productId)).ReturnsAsync((ProductEntity)null!);
+            _mockContext.Setup(c => c.Products.FindAsync(productId)).ReturnsAsync((ProductEntity)null!);
 
             // Act
             var result = await _repository.GetProduct(productId);

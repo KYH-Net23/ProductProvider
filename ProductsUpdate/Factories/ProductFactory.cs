@@ -47,7 +47,6 @@ namespace ProductsUpdate.Factories
             entity.Image = model.Image;
             entity.Stock = model.Stock;
             entity.Size = model.Size;
-            entity.AddedDate = model.AddedDate;
         }
     }
 }

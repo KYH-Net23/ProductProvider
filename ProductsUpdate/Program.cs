@@ -24,23 +24,23 @@ namespace ProductsUpdate
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddTransient<IProductService, ProductService>();
 
-            builder.Services.AddCors(o =>
-            o.AddPolicy("AllowLocalhost5173",
-            builder =>
-            {
-                builder.WithOrigins("http://localhost:5173/")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            }));
-
             //builder.Services.AddCors(o =>
-            //o.AddPolicy("AllowAll",
+            //o.AddPolicy("AllowLocalhost5173",
             //builder =>
             //{
-            //    builder.AllowAnyOrigin()
+            //    builder.WithOrigins("http://localhost:5173/")
             //    .AllowAnyMethod()
             //    .AllowAnyHeader();
             //}));
+
+            builder.Services.AddCors(o =>
+            o.AddPolicy("AllowAll",
+            builder =>
+            {
+                builder.AllowAnyOrigin()
+                .WithMethods("PUT")
+                .AllowAnyHeader();
+            }));
 
             var app = builder.Build();
 
@@ -50,8 +50,8 @@ namespace ProductsUpdate
                 app.UseSwaggerUI();
             }
 
-            app.UseCors("AllowLocalhost5173");
-            //app.UseCors("AllowAll");
+            //app.UseCors("AllowLocalhost5173");
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

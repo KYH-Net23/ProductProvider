@@ -13,7 +13,7 @@ namespace ProductsUpdate.Services
         {
             try
             {
-                int statusCode = -1;
+                int statusCode = -1; // Not Found
                 var existingProductEntity = await _repository.GetProduct(id);
 
                 if (existingProductEntity != null)
@@ -22,18 +22,18 @@ namespace ProductsUpdate.Services
                     var result = await _repository.SaveAsync();
                     if (result)
                     {
-                        statusCode = 1;
+                        statusCode = 1; // Found product and successfully updated
                     }
                     else
                     {
-                        statusCode = 0;
+                        statusCode = 0; // Found product but no changes
                     }
                 }
                 return statusCode;
             }
             catch
             {
-                return 2;
+                return 2; // Error
             }
         }
     }

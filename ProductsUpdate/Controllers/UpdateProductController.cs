@@ -22,16 +22,15 @@ namespace ProductsUpdate.Controllers
                 if (!ModelState.IsValid) return BadRequest(ModelState);
                 var result = await _service.UpdateProductAsync(id, updateProduct);
 
-                if (result == 1) return Ok("Product updated successfully.");
-                else if (result == 0) return NotFound();
-                else if (result == -1) return StatusCode(500, "Error updating the product OR no changes were made.");
-                return BadRequest(result);
+                if (result == 1) return Ok(new { Message = "Product updated successfully.", Result = updateProduct });
+                else if (result == 0) return NotFound(new { Message = "Product was not found" });
+                else if (result == -1) return StatusCode(500, new { Message = "Error updating the product OR no changes were made." });
+                return BadRequest(new { Message = "Something went wrong " });
             }
             catch (Exception ex)
             {
                 return BadRequest(ex);
             }
         }
-
     }
 }

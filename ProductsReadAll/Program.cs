@@ -22,32 +22,28 @@ List<ProductEntity> productList = [
     new ProductEntity
     {
         Id = 0,
-        Name = "Aloha T-shirt",
-        Title = "Kimmo Style",
+        Brand = "Aloha T-shirt",
         Price = 420m,
         Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
     },
     new ProductEntity
     {
         Id = 1,
-        Name = "Aloha Hot pants",
-        Title = "Kimmo Style",
+        Brand = "Aloha Hot pants",
         Price = 69m,
         Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
     },
     new ProductEntity
     {
         Id = 2,
-        Name = "Aloha String Bikini",
-        Title = "Kimmo Style",
+        Brand = "Aloha String Bikini",
         Price = 9001m,
         Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
     },
     new ProductEntity
     {
         Id = 3,
-        Name = "Aloha Mankini",
-        Title = "Kimmo Style",
+        Brand = "Aloha Mankini",
         Price = 1234m,
         Image = "https://cdn.sanity.io/images/u8zg7cll/production/f6ac780b53f53742b19224aa2e38b592c3365901-2500x2500.svg",
     },

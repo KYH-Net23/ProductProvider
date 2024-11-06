@@ -1,0 +1,6 @@
+@ProductsUpdate_HostAddress = http://localhost:5108
+
+GET {{ProductsUpdate_HostAddress}}/ProductsUpdate/
+Accept: application/json
+
+###

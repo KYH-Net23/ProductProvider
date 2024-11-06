@@ -5,12 +5,16 @@ namespace Shared.Contexts
 {
     public class ProductDbContext : DbContext
     {
+        protected ProductDbContext()
+        {
+
+        }
         public ProductDbContext(DbContextOptions<ProductDbContext> options) : base(options)
         {
 
         }
 
-        public DbSet<ProductEntity> Products { get; set; }
+        public virtual DbSet<ProductEntity> Products { get; set; }
 
 
     }

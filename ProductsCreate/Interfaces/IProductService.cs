@@ -1,9 +1,9 @@
-﻿using CreateProducts.Models;
+﻿using ProductsCreate;
 
 namespace CreateProducts.Interfaces
 {
     public interface IProductService
     {
-        public Task CreateNewProduct(ProductModel model);
+        public Task<string> CreateNewProduct(ProductModel model);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using CreateProducts.Interfaces;
-using CreateProducts.Models;
-using CreateProducts.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductsCreate;
 
 namespace CreateProducts.Controllers
 {
@@ -20,8 +18,16 @@ namespace CreateProducts.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateProduct(ProductModel model)
         {
-           await _productService.CreateNewProduct(model);
-           return Ok();
+            try
+            {
+                var result = await _productService.CreateNewProduct(model);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+         
         }
     }
 }

@@ -13,12 +13,18 @@ namespace ProductReadOne
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
+            
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
             builder.Services.AddDbContext<ProductDbContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -36,10 +42,8 @@ namespace ProductReadOne
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
+            app.UseCors("AllowAll");
             app.MapControllers();
 
             app.Run();

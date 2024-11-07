@@ -1,4 +1,8 @@
-﻿using Shared.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductsRead.Models;
+using ProductsRead.Repositories;
+using Shared.Contexts;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +11,11 @@ using System.Threading.Tasks;
 
 namespace ProductReadOne.Test.Repositories
 {
-    internal class ReadOneRepoTest
+    namespace ProductReadOne.Test.Repositories
     {
-        private readonly ProductDbContext _context;
-        public ReadOneRepoTest(ProductDbContext context)
+        public class ReadOneRepoTest
         {
-            _context = context;
+           
         }
     }
 }

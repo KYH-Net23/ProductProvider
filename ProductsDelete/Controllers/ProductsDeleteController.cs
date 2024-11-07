@@ -1,32 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ProductsDelete.Data;
+using ProductsDelete.Services;
 
 namespace ProductsDelete
 {
-
     [Route("[controller]")]
     [ApiController]
     public class ProductDeleteController : Controller
     {
+        private readonly IProductService _productService;
 
-        private readonly ApplicationDbContext _context;
-
-        public ProductDeleteController(ApplicationDbContext context)
+        public ProductDeleteController(IProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
-            var product = _context.products.Find(id);
-            if (product == null)
+            var success = _productService.DeleteProduct(id);
+            if (!success)
             {
                 return NotFound();
             }
-            _context.products.Remove(product);
-            _context.SaveChanges();
             return NoContent();
         }
     }

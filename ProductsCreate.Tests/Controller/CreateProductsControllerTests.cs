@@ -19,6 +19,7 @@ namespace CreateProducts.Tests
             _controller = new CreateProductController(_mockProductService.Object);
         }
 
+
         [Fact]
         public async Task CreateProduct_ReturnsOkResult_WhenProductCreatedSuccessfully()
         {

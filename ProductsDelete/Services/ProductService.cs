@@ -1,5 +1,4 @@
 ﻿using ProductsDelete.Data;
-using ProductsDelete.Models;
 
 namespace ProductsDelete.Services
 {
@@ -14,15 +13,15 @@ namespace ProductsDelete.Services
 
         public bool DeleteProduct(int id)
         {
-            var product = _context.products.Find(id);
+            var product = _context.products.FirstOrDefault(p => p.Id == id && !p.IsDeleted); 
             if (product == null)
             {
-                return false;
+                return false;  
             }
 
-            _context.products.Remove(product);
+            product.IsDeleted = true;  
             _context.SaveChanges();
-            return true; 
+            return true;
         }
     }
 }

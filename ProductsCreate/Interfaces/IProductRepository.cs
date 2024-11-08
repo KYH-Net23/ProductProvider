@@ -4,6 +4,6 @@ namespace CreateProducts.Interfaces
 {
     public interface IProductRepository
     {
-        Task SaveAsync(ProductEntity entity);
+        Task<string> SaveAsync(ProductEntity entity);
     }
 }

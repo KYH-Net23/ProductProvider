@@ -1,5 +1,4 @@
-﻿using CreateProducts.Models;
-using Shared.Models;
+﻿using Shared.Models;
 
 namespace ProductsCreate.Interfaces
 {

@@ -1,4 +1,4 @@
-﻿using CreateProducts.Models;
+﻿using ProductsCreate;
 using ProductsCreate.Interfaces;
 using Shared.Models;
 
@@ -11,7 +11,7 @@ namespace CreateProducts.Factories
             var productEntity = new ProductEntity
             {
                 Brand = model.Brand,
-                Model = model.Model,
+                Model = model.Model!,
                 Description = model.Description,
                 Price = model.Price,
                 Category = model.Category,

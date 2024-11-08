@@ -1,9 +1,7 @@
-﻿using CreateProducts.Factories;
-using CreateProducts.Interfaces;
-using CreateProducts.Models;
-using CreateProducts.Repository;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using CreateProducts.Interfaces;
+using ProductsCreate;
 using ProductsCreate.Interfaces;
+using ProductsCreate.ResultResponse;
 
 namespace CreateProducts.Services
 {
@@ -18,10 +16,27 @@ namespace CreateProducts.Services
             _factory = factory;
         }
 
-        public async Task CreateNewProduct(ProductModel model)
+        public async Task<string> CreateNewProduct(ProductModel model)
         {
-           var entity = _factory.Create(model);
-           await _repository.SaveAsync(entity);
+            try
+            {
+                var entity = _factory.Create(model);
+
+                try
+                {
+                    var result = await _repository.SaveAsync(entity);
+                    return ResultResponse.Success;
+                }
+                catch
+                {
+                    return ResultResponse.Failed;
+                }
+            }
+            catch
+            {
+                return ResultResponse.Failed;
+            }
+          
         }
     }
 }

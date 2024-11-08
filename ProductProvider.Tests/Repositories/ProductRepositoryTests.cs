@@ -1,9 +1,9 @@
 ﻿using Moq;
-using ProductsUpdate.Repositories;
-using Shared.Contexts;
-using Shared.Models;
+using ProductProvider.Contexts;
+using ProductProvider.Models;
+using ProductProvider.Repositories;
 
-namespace ProductsUpdate.Tests.Repositories
+namespace ProductProvider.Tests.Repositories
 {
     public class ProductRepositoryTests
     {
@@ -25,7 +25,7 @@ namespace ProductsUpdate.Tests.Repositories
             _mockContext.Setup(c => c.Products.FindAsync(1)).ReturnsAsync(product);
 
             // Act
-            var result = await _repository.GetProduct(product.Id);
+            var result = await _repository.GetProductAsync(product.Id);
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -40,7 +40,7 @@ namespace ProductsUpdate.Tests.Repositories
             _mockContext.Setup(c => c.Products.FindAsync(productId)).ReturnsAsync((ProductEntity)null!);
 
             // Act
-            var result = await _repository.GetProduct(productId);
+            var result = await _repository.GetProductAsync(productId);
 
             // Assert
             Assert.That(result, Is.Null);

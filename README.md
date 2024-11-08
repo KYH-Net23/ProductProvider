@@ -21,7 +21,7 @@ Retrieve the details of a specific product by its `id`.
 **Parameters:**
 - `id` (int): The unique identifier of the product.
 
-### 3. **POST /api/createproducts**
+### 3. **POST /api/createproduct**
 Create a new product.
 
 ### 4. **PUT /api/updateproduct/{id}**

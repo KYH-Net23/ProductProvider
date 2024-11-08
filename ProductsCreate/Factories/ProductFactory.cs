@@ -19,9 +19,7 @@ namespace CreateProducts.Factories
                 Stock = model.Stock,
                 Size = model.Size
             };
-
             return productEntity;
         }
-
     }
 }

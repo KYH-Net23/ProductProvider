@@ -5,7 +5,7 @@ using ProductProvider.Models;
 
 namespace ProductProvider.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/updateproduct")]
     [ApiController]
     public class UpdateProductController(IProductService service) : ControllerBase
     {

@@ -1,26 +1,27 @@
 ﻿using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
+using ProductProvider.Responses;
 
 namespace ProductProvider.Services
 {
     public class ProductService(IProductRepository repository) : IProductService
     {
         private readonly IProductRepository _repository = repository;
-        public async Task<ProductEntity?> GetProductById(int id)
+        public async Task<ProductEntity?> GetProductAsync(int id)
         {
-            return await _repository.GetProduct(id);
+            return await _repository.GetProductAsync(id);
         }
-        public async Task<List<ProductEntity>> GetAllProducts()
+        public async Task<List<ProductEntity>> GetAllProductsAsync()
         {
-            return await _repository.GetAllProducts();
+            return await _repository.GetAllProductsAsync();
         }
         public async Task<int> UpdateProductAsync(int id, ProductModel model)
         {
             try
             {
                 int statusCode = -1; // Not Found
-                var existingProductEntity = await _repository.GetProduct(id);
+                var existingProductEntity = await _repository.GetProductAsync(id);
 
                 if (existingProductEntity != null)
                 {
@@ -42,7 +43,7 @@ namespace ProductProvider.Services
                 return 2; // Error
             }
         }
-        public async Task<string> CreateNewProduct(ProductModel model)
+        public async Task<string> CreateProductAsync(ProductModel model)
         {
             try
             {
@@ -51,21 +52,21 @@ namespace ProductProvider.Services
                 try
                 {
                     var result = await _repository.SaveAsync(entity);
-                    return ResultResponse.ResultResponse.Success;
+                    return ResultResponse.Success;
                 }
                 catch
                 {
-                    return ResultResponse.ResultResponse.Failed;
+                    return ResultResponse.Failed;
                 }
             }
             catch
             {
-                return ResultResponse.ResultResponse.Failed;
+                return ResultResponse.Failed;
             }
         }
-        public async Task<bool> DeleteProduct(int id)
+        public async Task<bool> DeleteProductAsync(int id)
         {
-            var product = await _repository.GetProduct(id);
+            var product = await _repository.GetProductAsync(id);
             if (product == null)
             {
                 return false;

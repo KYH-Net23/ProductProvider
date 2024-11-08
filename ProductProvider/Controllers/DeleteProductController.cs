@@ -4,7 +4,7 @@ using ProductProvider.Interfaces;
 
 namespace ProductProvider.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/deleteproduct")]
     [ApiController]
     public class DeleteProductController(IProductService service) : ControllerBase
     {
@@ -13,7 +13,7 @@ namespace ProductProvider.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var success = await _service.DeleteProduct(id);
+            var success = await _service.DeleteProductAsync(id);
             if (!success)
             {
                 return NotFound();

@@ -4,7 +4,7 @@ using ProductProvider.Interfaces;
 
 namespace ProductProvider.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/getproducts")]
     [ApiController]
     public class GetProductsController(IProductService service) : ControllerBase
     {
@@ -12,7 +12,7 @@ namespace ProductProvider.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
-            var products = await _service.GetAllProducts();
+            var products = await _service.GetAllProductsAsync();
 
             if (products != null && products.Count > 0)
             {

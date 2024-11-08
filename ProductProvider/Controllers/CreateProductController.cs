@@ -5,7 +5,7 @@ using ProductProvider.Models;
 
 namespace ProductProvider.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/createproduct")]
     [ApiController]
     public class CreateProductController(IProductService service) : ControllerBase
     {
@@ -15,7 +15,7 @@ namespace ProductProvider.Controllers
         {
             try
             {
-                var result = await _service.CreateNewProduct(model);
+                var result = await _service.CreateProductAsync(model);
                 return Ok(result);
             }
             catch

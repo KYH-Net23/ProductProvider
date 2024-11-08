@@ -4,10 +4,10 @@ namespace ProductProvider.Interfaces
 {
     public interface IProductService
     {
-        Task<string> CreateNewProduct(ProductModel model);
-        Task<bool> DeleteProduct(int id);
-        Task<ProductEntity?> GetProductById(int id);
-        Task<List<ProductEntity>> GetAllProducts();
+        Task<string> CreateProductAsync(ProductModel model);
+        Task<bool> DeleteProductAsync(int id);
+        Task<ProductEntity?> GetProductAsync(int id);
+        Task<List<ProductEntity>> GetAllProductsAsync();
         Task<int> UpdateProductAsync(int id, ProductModel model);
     }
 }

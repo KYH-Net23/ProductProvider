@@ -5,8 +5,8 @@ namespace ProductProvider.Interfaces
     public interface IProductRepository
     {
         Task<bool> DeleteAsync(ProductEntity entity);
-        Task<ProductEntity?> GetProduct(int id);
-        Task<List<ProductEntity>> GetAllProducts();
+        Task<ProductEntity?> GetProductAsync(int id);
+        Task<List<ProductEntity>> GetAllProductsAsync();
         Task<bool> SaveAsync();
         Task<string> SaveAsync(ProductEntity entity);
     }

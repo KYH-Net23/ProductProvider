@@ -3,7 +3,7 @@ using ProductProvider.Contexts;
 using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
-using ProductProvider.ResultResponse;
+using ProductProvider.Responses;
 using System.Linq.Expressions;
 namespace ProductProvider.Repositories
 {
@@ -11,11 +11,11 @@ namespace ProductProvider.Repositories
     {
         private readonly ProductDbContext _context = context;
 
-        public async Task<List<ProductEntity>> GetAllProducts()
+        public async Task<List<ProductEntity>> GetAllProductsAsync()
         {
             return await _context.Products.ToListAsync();
         }
-        public async Task<ProductEntity?> GetProduct(int id)
+        public async Task<ProductEntity?> GetProductAsync(int id)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace ProductProvider.Repositories
         {
 
             var entity = await _context.Products.FirstOrDefaultAsync(expression);
-            return (entity != null) ? ProductFactory.CreateProduct(entity) : null!;
+            return (entity != null) ? ProductFactory.Create(entity) : null!;
         }
         public async Task<bool> SaveAsync()
         {
@@ -50,11 +50,11 @@ namespace ProductProvider.Repositories
             {
                 await _context.Products.AddAsync(entity);
                 await _context.SaveChangesAsync();
-                return ResultResponse.ResultResponse.Success;
+                return ResultResponse.Success;
             }
             catch
             {
-                return ResultResponse.ResultResponse.Failed;
+                return ResultResponse.Failed;
             }
         }
 

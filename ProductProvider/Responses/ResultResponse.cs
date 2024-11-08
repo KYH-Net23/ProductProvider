@@ -1,4 +1,4 @@
-﻿namespace ProductProvider.ResultResponse
+﻿namespace ProductProvider.Responses
 {
     public static class ResultResponse
     {

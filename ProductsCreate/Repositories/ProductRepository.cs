@@ -1,4 +1,5 @@
 ﻿using CreateProducts.Interfaces;
+using ProductsCreate.ResultResponse;
 using Shared.Contexts;
 using Shared.Models;
 
@@ -13,10 +14,19 @@ namespace CreateProducts.Repository
             _context = context;
         }
 
-        public async Task SaveAsync(ProductEntity entity)
+        public async Task<string> SaveAsync(ProductEntity entity)
         {
-            await _context.Products.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.Products.AddAsync(entity);
+                await _context.SaveChangesAsync();
+                return ResultResponse.Success;
+            }
+            catch
+            {
+                return ResultResponse.Failed;
+            }
+
         }
     }
 }

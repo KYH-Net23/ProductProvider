@@ -1,6 +1,8 @@
 ﻿using Moq;
+using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
+using ProductProvider.Responses;
 using ProductProvider.Services;
 
 namespace ProductProvider.Tests.Services
@@ -15,6 +17,27 @@ namespace ProductProvider.Tests.Services
         {
             _mockRepo = new Mock<IProductRepository>();
             _service = new ProductService(_mockRepo.Object);
+        }
+
+        // Create
+
+        [Test]
+        public async Task CreateProductAsync_WhenSaveIsSuccessful_ReturnsSuccess()
+        {
+            // Arrange
+            var productModel = new ProductModel(); // Initialize with necessary properties
+            var productEntity = ProductFactory.Create(productModel);
+            productEntity.AddedDate = DateOnly.FromDateTime(DateTime.Now);
+            _mockRepo
+                .Setup(repo => repo.SaveAsync(It.IsAny<ProductEntity>()))
+                .ReturnsAsync("Success"); // Simulating a successful save
+
+            // Act
+            var result = await _service.CreateProductAsync(productModel);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(ResultResponse.Success));
+            _mockRepo.Verify(repo => repo.SaveAsync(It.IsAny<ProductEntity>()), Times.Once);
         }
 
         // Read One

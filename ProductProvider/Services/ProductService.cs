@@ -48,7 +48,7 @@ namespace ProductProvider.Services
             try
             {
                 var entity = ProductFactory.Create(model);
-
+                entity.AddedDate = DateOnly.FromDateTime(DateTime.Now);
                 try
                 {
                     var result = await _repository.SaveAsync(entity);

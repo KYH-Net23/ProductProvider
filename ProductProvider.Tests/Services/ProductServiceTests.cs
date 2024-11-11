@@ -1,7 +1,13 @@
-﻿using Moq;
+﻿using Azure.Identity;
+using Castle.Core.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Moq;
+using ProductProvider.Contexts;
 using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
+using ProductProvider.Repositories;
 using ProductProvider.Responses;
 using ProductProvider.Services;
 
@@ -11,6 +17,7 @@ namespace ProductProvider.Tests.Services
     {
         private Mock<IProductRepository> _mockRepo;
         private ProductService _service;
+        private Microsoft.Extensions.Configuration.IConfiguration _configuration;
 
         [SetUp]
         public void SetUp()
@@ -239,6 +246,48 @@ namespace ProductProvider.Tests.Services
             //Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public async Task ProductSearchAsync_ShouldReturnCorrectResults_FromRealDatabase() 
+        {
+            //Arrange
+            var keyValtName = "";
+            var keyVaultUri = "";
+
+            _configuration = new ConfigurationBuilder()
+                .AddAzureKeyVault(new Uri(keyVaultUri), new DefaultAzureCredential())
+                .Build();
+
+            var connectionString = _configuration["TestDbConnectionString"];
+
+            var options = new DbContextOptionsBuilder<ProductDbContext>()
+                .UseSqlServer(connectionString)
+                .Options;
+
+            using (var context = new ProductDbContext(options))
+            {
+                context.Products.AddRange(
+                    new ProductEntity { Brand = "Test Brand 1"},
+                    new ProductEntity { Brand = "Test Brand 2"},
+                    new ProductEntity { Brand = "Test Brand 3"}
+                    );
+                await context.SaveChangesAsync();
+
+                var repository = new ProductRepository(context);
+                var service = new ProductService(repository);
+
+                //Act
+                var result = await service.ProductSearchAsync("Test");
+
+                //Assert
+                Assert.That(result.Count, Is.EqualTo(3));
+                Assert.That(result.All(p => p.Brand.Contains("Test")), Is.True);
+
+            }
+
+
+
         }
     }
 }

@@ -197,11 +197,10 @@ namespace ProductProvider.Tests.Services
         public async Task ProductSearchAsync_ShouldReturnResults_WhenMatchExists()
         {
             //Arrange
-            var search = "TestBrand";
+            var search = "Test Brand 1";
             var expectedProducts = new List<ProductEntity>
             {
-                new ProductEntity {Brand = "Test Brand1"},
-                new ProductEntity {Brand = "Test Brand 2"}
+                new ProductEntity {Brand = "Test Brand 1"},
             };
             _mockRepo.Setup(r => r.SearchProductAsync(search))
                 .ReturnsAsync(expectedProducts);

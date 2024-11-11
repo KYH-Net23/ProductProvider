@@ -192,5 +192,25 @@ namespace ProductProvider.Tests.Services
             //Assert 
             Assert.That(result, Is.EqualTo(0));
         }
+
+        [Test]
+        public async Task ProductSearchAsync_ShouldReturnResults_WhenMatchExists()
+        {
+            //Arrange
+            var search = "TestBrand";
+            var expectedProducts = new List<ProductEntity>
+            {
+                new ProductEntity {Brand = "Test Brand1"},
+                new ProductEntity {Brand = "Test Brand 2"}
+            };
+            _mockRepo.Setup(r => r.SearchProductAsync(search))
+                .ReturnsAsync(expectedProducts);
+            //Act
+            var result = await _service.ProductSearchAsync(search);
+
+            //Assert
+            Assert.That(result.Count, Is.EqualTo(expectedProducts.Count));
+            Assert.That(result.All(p => p.Brand.Contains(search)));
+        }
     }
 }

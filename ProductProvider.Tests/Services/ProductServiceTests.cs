@@ -226,5 +226,19 @@ namespace ProductProvider.Tests.Services
             Assert.That(result, Is.Not.Null);
             Assert.That(result, Is.Empty);
         }
+
+        [Test]
+        public async Task ProductSearchAsync_ShouldReturnEmptyList_WhenSearchStringIsNullOrEmpty()
+        {
+            //Arrange
+            var search = string.Empty;
+
+            //Act
+            var result = await _service.ProductSearchAsync(search);
+
+            //Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.Empty);
+        }
     }
 }

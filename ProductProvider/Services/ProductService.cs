@@ -15,6 +15,10 @@ namespace ProductProvider.Services
         {
             try
             {
+                if (string.IsNullOrEmpty(search))
+                {
+                    return new List<ProductEntity>();
+                }
                 return await _repository.SearchProductAsync(search);
 
             }

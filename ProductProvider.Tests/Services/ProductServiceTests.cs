@@ -211,5 +211,20 @@ namespace ProductProvider.Tests.Services
             Assert.That(result.Count, Is.EqualTo(expectedProducts.Count));
             Assert.That(result.All(p => p.Brand.Contains(search)));
         }
+
+        [Test]
+        public async Task ProductSearchAsync_ShouldReturnEmptyList_WhenNoMatchExist()
+        {
+            //Arrange
+            var search = "No Existant";
+            _mockRepo.Setup(r => r.SearchProductAsync(search))
+                .ReturnsAsync(new List<ProductEntity>());
+            //Act
+            var result = await _service.ProductSearchAsync(search);
+
+            //Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.Empty);
+        }
     }
 }

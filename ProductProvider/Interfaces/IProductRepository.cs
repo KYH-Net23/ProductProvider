@@ -10,6 +10,5 @@ namespace ProductProvider.Interfaces
         Task<List<ProductEntity>> GetAllProductsAsync();
         Task<bool> SaveAsync();
         Task<string> SaveAsync(ProductEntity entity);
-        Task<List<ProductEntity>> SortProductsAsync(SortOption sortOption);
     }
 }

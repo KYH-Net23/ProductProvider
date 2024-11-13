@@ -1,4 +1,5 @@
-﻿using ProductProvider.Models;
+﻿using ProductProvider.Enums;
+using ProductProvider.Models;
 
 namespace ProductProvider.Interfaces
 {

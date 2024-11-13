@@ -12,6 +12,6 @@ namespace ProductProvider.Interfaces
         Task<int> UpdateProductAsync(int id, ProductModel model);
         Task<List<ProductEntity>> ProductSearchAsync(string search);
         Task<List<ProductEntity>> SortProductsAsync(SortOption sortOption);
-
+        Task<List<ProductEntity>> GetPaginatedProductsAsync(int page, int limit);
     }
 }

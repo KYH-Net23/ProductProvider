@@ -11,5 +11,6 @@ namespace ProductProvider.Interfaces
         Task<bool> SaveAsync();
         Task<string> SaveAsync(ProductEntity entity);
         Task<List<ProductEntity>> SearchProductAsync(string search);
+        Task<List<ProductEntity>> GetPaginatedProductsAsync(int page, int limit);
     }
 }

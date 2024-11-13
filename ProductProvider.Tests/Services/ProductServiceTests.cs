@@ -1,9 +1,9 @@
 using Azure.Identity;
-using Castle.Core.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using ProductProvider.Contexts;
+using ProductProvider.Enums;
 using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
@@ -250,7 +250,7 @@ namespace ProductProvider.Tests.Services
         }
 
         [Test]
-        public async Task ProductSearchAsync_ShouldReturnCorrectResults_FromRealDatabase() 
+        public async Task ProductSearchAsync_ShouldReturnCorrectResults_FromRealDatabase()
         {
             //Arrange
             var keyValtName = "";
@@ -269,9 +269,9 @@ namespace ProductProvider.Tests.Services
             using (var context = new ProductDbContext(options))
             {
                 context.Products.AddRange(
-                    new ProductEntity { Brand = "Test Brand 1"},
-                    new ProductEntity { Brand = "Test Brand 2"},
-                    new ProductEntity { Brand = "Test Brand 3"}
+                    new ProductEntity { Brand = "Test Brand 1" },
+                    new ProductEntity { Brand = "Test Brand 2" },
+                    new ProductEntity { Brand = "Test Brand 3" }
                     );
                 await context.SaveChangesAsync();
 
@@ -286,99 +286,99 @@ namespace ProductProvider.Tests.Services
                 Assert.That(result.All(p => p.Brand.Contains("Test")), Is.True);
 
             }
-
-
-
-
-        // sorting
-
-        [Test]
-        public async Task SortProductsAsync_ShouldSortByPriceAscending()
-        {
-            // Arrange
-            var products = new List<ProductEntity>
-            {
-            new ProductEntity { Id = 1, Model = "Product A", Price = 200 },
-            new ProductEntity { Id = 2, Model = "Product B", Price = 100 },
-            new ProductEntity { Id = 3, Model = "Product C", Price = 300 }
-            };
-
-            _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
-
-            // Act
-            var result = await _service.SortProductsAsync(SortOption.PriceAscending);
-
-            // Assert
-            Assert.That(result.First().Price, Is.EqualTo(100));
-            Assert.That(result[1].Price, Is.EqualTo(200));
-            Assert.That(result.Last().Price, Is.EqualTo(300));
         }
 
-        [Test]
-        public async Task SortProductsAsync_ShouldSortByPriceDescending()
-        {
-            // Arrange
-            var products = new List<ProductEntity>
+
+
+            // sorting
+
+            [Test]
+            public async Task SortProductsAsync_ShouldSortByPriceAscending()
             {
-            new ProductEntity { Id = 1, Model = "Product A", Price = 200 },
-            new ProductEntity { Id = 2, Model = "Product B", Price = 100 },
-            new ProductEntity { Id = 3, Model = "Product C", Price = 300 }
-            };
+                // Arrange
+                var products = new List<ProductEntity>
+                {
+                new ProductEntity { Id = 1, Model = "Product A", Price = 200 },
+                new ProductEntity { Id = 2, Model = "Product B", Price = 100 },
+                new ProductEntity { Id = 3, Model = "Product C", Price = 300 }
+                };
 
-            _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
+                _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
 
-            // Act
-            var result = await _service.SortProductsAsync(SortOption.PriceDescending);
+                // Act
+                var result = await _service.SortProductsAsync(SortOption.PriceAscending);
 
-            // Assert
-            Assert.That(result.First().Price, Is.EqualTo(300));
-            Assert.That(result[1].Price, Is.EqualTo(200));
-            Assert.That(result.Last().Price, Is.EqualTo(100));
-        }
+                // Assert
+                Assert.That(result.First().Price, Is.EqualTo(100));
+                Assert.That(result[1].Price, Is.EqualTo(200));
+                Assert.That(result.Last().Price, Is.EqualTo(300));
+            }
 
-        [Test]
-        public async Task SortProductsAsync_ShouldSortByAlphabetical_IntegrationTest()
-        {
-            // Arrange
-            var products = new List<ProductEntity>
+            [Test]
+            public async Task SortProductsAsync_ShouldSortByPriceDescending()
             {
-            new ProductEntity { Id = 1, Model = "Apple", Price = 200 },
-            new ProductEntity { Id = 2, Model = "Banana", Price = 100 },
-            new ProductEntity { Id = 3, Model = "Cherry", Price = 300 }
-            };
+                // Arrange
+                var products = new List<ProductEntity>
+                {
+                new ProductEntity { Id = 1, Model = "Product A", Price = 200 },
+                new ProductEntity { Id = 2, Model = "Product B", Price = 100 },
+                new ProductEntity { Id = 3, Model = "Product C", Price = 300 }
+                };
 
-            _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
+                _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
 
-            // Act
-            var result = await _service.SortProductsAsync(SortOption.Alphabetical);
+                // Act
+                var result = await _service.SortProductsAsync(SortOption.PriceDescending);
 
-            // Assert
-            Assert.That(result.First().Model, Is.EqualTo("Apple"));
-            Assert.That(result[1].Model, Is.EqualTo("Banana"));
-            Assert.That(result.Last().Model, Is.EqualTo("Cherry"));
-        }
+                // Assert
+                Assert.That(result.First().Price, Is.EqualTo(300));
+                Assert.That(result[1].Price, Is.EqualTo(200));
+                Assert.That(result.Last().Price, Is.EqualTo(100));
+            }
 
-        [Test]
-        public async Task SortProductsAsync_ShouldSortByAlphabeticalDescending_IntegrationTest()
-        {
-            // Arrange
-            var products = new List<ProductEntity>
+            [Test]
+            public async Task SortProductsAsync_ShouldSortByAlphabetical_IntegrationTest()
             {
-            new ProductEntity { Id = 1, Model = "Apple", Price = 200 },
-            new ProductEntity { Id = 2, Model = "Banana", Price = 100 },
-            new ProductEntity { Id = 3, Model = "Cherry", Price = 300 }
-            };
+                // Arrange
+                var products = new List<ProductEntity>
+                {
+                new ProductEntity { Id = 1, Model = "Apple", Price = 200 },
+                new ProductEntity { Id = 2, Model = "Banana", Price = 100 },
+                new ProductEntity { Id = 3, Model = "Cherry", Price = 300 }
+                };
 
-            _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
+                _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
 
-            // Act
-            var result = await _service.SortProductsAsync(SortOption.AlphabeticalDescending);
+                // Act
+                var result = await _service.SortProductsAsync(SortOption.Alphabetical);
 
-            // Assert
-            Assert.That(result.First().Model, Is.EqualTo("Cherry"));
-            Assert.That(result[1].Model, Is.EqualTo("Banana"));
-            Assert.That(result.Last().Model, Is.EqualTo("Apple"));
+                // Assert
+                Assert.That(result.First().Model, Is.EqualTo("Apple"));
+                Assert.That(result[1].Model, Is.EqualTo("Banana"));
+                Assert.That(result.Last().Model, Is.EqualTo("Cherry"));
+            }
 
+            [Test]
+            public async Task SortProductsAsync_ShouldSortByAlphabeticalDescending_IntegrationTest()
+            {
+                // Arrange
+                var products = new List<ProductEntity>
+                {
+                new ProductEntity { Id = 1, Model = "Apple", Price = 200 },
+                new ProductEntity { Id = 2, Model = "Banana", Price = 100 },
+                new ProductEntity { Id = 3, Model = "Cherry", Price = 300 }
+                };
+
+                _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
+
+                // Act
+                var result = await _service.SortProductsAsync(SortOption.AlphabeticalDescending);
+
+                // Assert
+                Assert.That(result.First().Model, Is.EqualTo("Cherry"));
+                Assert.That(result[1].Model, Is.EqualTo("Banana"));
+                Assert.That(result.Last().Model, Is.EqualTo("Apple"));
+
+            }
         }
     }
-}

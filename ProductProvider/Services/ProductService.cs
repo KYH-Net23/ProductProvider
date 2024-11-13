@@ -1,14 +1,33 @@
-﻿using ProductProvider.Enums;
+using ProductProvider.Enums;
 using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
 using ProductProvider.Responses;
+using System;
 
 namespace ProductProvider.Services
 {
     public class ProductService(IProductRepository repository) : IProductService
     {
         private readonly IProductRepository _repository = repository;
+
+        public async Task<List<ProductEntity>> ProductSearchAsync(string search)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search))
+                {
+                    return new List<ProductEntity>();
+                }
+                return await _repository.SearchProductAsync(search);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<ProductEntity>();
+            }
+        }
         public async Task<ProductEntity?> GetProductAsync(int id)
         {
             return await _repository.GetProductAsync(id);
@@ -30,18 +49,18 @@ namespace ProductProvider.Services
                     var result = await _repository.SaveAsync();
                     if (result)
                     {
-                        statusCode = 1; // Found product and successfully updated
+                        statusCode = 1;
                     }
                     else
                     {
-                        statusCode = 0; // Found product but no changes
+                        statusCode = 0; 
                     }
                 }
                 return statusCode;
             }
             catch
             {
-                return 2; // Error
+                return 2; 
             }
         }
         public async Task<string> CreateProductAsync(ProductModel model)

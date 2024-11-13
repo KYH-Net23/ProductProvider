@@ -4,7 +4,6 @@ using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
 using ProductProvider.Responses;
-using System;
 using System.Linq.Expressions;
 namespace ProductProvider.Repositories
 {
@@ -12,22 +11,6 @@ namespace ProductProvider.Repositories
     {
         private readonly ProductDbContext _context = context;
 
-
-        public async Task<List<ProductEntity>> SearchProductAsync(string search)
-        {
-            try
-            {
-                return await _context.Products
-                .Where(p => p.Brand.Contains(search))
-                .ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<ProductEntity>();
-            }
-            
-        }
         public async Task<List<ProductEntity>> GetAllProductsAsync()
         {
             return await _context.Products.ToListAsync();

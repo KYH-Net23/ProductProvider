@@ -1,4 +1,5 @@
-﻿using ProductProvider.Models;
+﻿using ProductProvider.Enums;
+using ProductProvider.Models;
 
 namespace ProductProvider.Interfaces
 {
@@ -10,5 +11,7 @@ namespace ProductProvider.Interfaces
         Task<List<ProductEntity>> GetAllProductsAsync();
         Task<int> UpdateProductAsync(int id, ProductModel model);
         Task<List<ProductEntity>> ProductSearchAsync(string search);
+        Task<List<ProductEntity>> SortProductsAsync(SortOption sortOption);
+
     }
 }

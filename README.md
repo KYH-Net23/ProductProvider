@@ -35,3 +35,12 @@ Delete a product.
 
 **Parameters:**
 - `id` (int): The unique identifier of the product.
+
+### 6. **GET /api/sortproducts**
+Sort a list of products.
+
+- `SortOption` (int): Enum sortOption
+- 0 = PriceAscending
+- 1 = PriceDescending
+- 2 = Alphabetical
+- 3 = AlphabeticalDescending

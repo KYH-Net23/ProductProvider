@@ -1,5 +1,5 @@
-﻿using ProductProvider.Models;
-using System.Globalization;
+using ProductProvider.Enums;
+using ProductProvider.Models;
 
 namespace ProductProvider.Interfaces
 {

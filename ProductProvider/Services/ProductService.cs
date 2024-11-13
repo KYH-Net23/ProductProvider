@@ -1,4 +1,4 @@
-﻿using Bogus;
+using ProductProvider.Enums;
 using ProductProvider.Factories;
 using ProductProvider.Interfaces;
 using ProductProvider.Models;
@@ -93,6 +93,36 @@ namespace ProductProvider.Services
             }
             var result = await _repository.DeleteAsync(product);
             return result;
+        }
+         
+        public async Task<List<ProductEntity>> SortProductsAsync(SortOption sortOption)
+        {
+            var products = await _repository.GetAllProductsAsync();
+            List<ProductEntity> sortedProducts;
+
+            switch (sortOption)
+            {
+                case SortOption.PriceAscending:
+                    sortedProducts = products.OrderBy(p => p.Price).ToList();
+                    break;
+
+                case SortOption.PriceDescending:
+                    sortedProducts = products.OrderByDescending(p => p.Price).ToList();
+                    break;
+
+                case SortOption.Alphabetical:
+                    sortedProducts = products.OrderBy(p => p.Model).ToList();
+                    break;
+
+                case SortOption.AlphabeticalDescending:
+                    sortedProducts = products.OrderByDescending(p => p.Model).ToList();
+                    break;
+
+                default:
+                    sortedProducts = products;
+                    break;
+            }
+            return sortedProducts;
         }
     }
 }

@@ -75,7 +75,7 @@ namespace ProductProvider.Services
             var result = await _repository.DeleteAsync(product);
             return result;
         }
-
+         
         public async Task<List<ProductEntity>> SortProductsAsync(SortOption sortOption)
         {
             var products = await _repository.GetAllProductsAsync();

@@ -4,7 +4,7 @@ using ProductProvider.Models;
 
 namespace ProductProvider.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/searchproducts")]
     [ApiController]
     public class SearchProductController(IProductService productService) : ControllerBase
     {

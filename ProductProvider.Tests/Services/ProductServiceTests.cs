@@ -364,5 +364,24 @@ namespace ProductProvider.Tests.Services
             Assert.That(paginatedProducts, Is.Empty);
         }
 
+        [Test]
+        public async Task GetPaginatedProducts_WithinPageBounds_ReturnsCorrectPageSize()
+        {// Arrange
+            var pageSize = 10;
+            var pageNumber = 2;
+
+            var sampleProducts = Enumerable.Range(1, 50)
+                .Select(i => new ProductEntity { Id = i, Brand = $"Brand {i}", Model = $"Model {i}" })
+                .ToList();
+
+            _mockRepo.Setup(r => r.GetAllProductsAsync()).ReturnsAsync(sampleProducts);
+
+            // Act
+            var paginatedProducts = await _service.GetPaginatedProductsAsync(pageNumber, pageSize);
+
+            // Assert
+            Assert.That(paginatedProducts.Count, Is.EqualTo(pageSize));
+        }
+
     }
 }

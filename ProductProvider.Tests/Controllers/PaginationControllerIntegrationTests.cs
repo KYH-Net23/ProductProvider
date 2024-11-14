@@ -51,6 +51,23 @@ namespace ProductProvider.Tests.Controllers
         }
 
 
-        
+        [Test]
+        public async Task GetPaginatedProducts_WithExceedingPageNumber_ReturnsEmptyList() 
+        {
+            //Arrange
+            var pageNumber = 10;
+            var pageSize = 10;
+
+            //Act
+            var response = await _client.GetAsync($"/api/getpagination?page={pageNumber}&limit={pageSize}");
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+
+            var responsContent = await response.Content.ReadAsStringAsync();
+            var products = JsonConvert.DeserializeObject<List<ProductEntity>>(responsContent);
+
+            Assert.That(products, Is.Empty);
+        }
     }
 }

@@ -303,9 +303,9 @@ namespace ProductProvider.Tests.Services
             // Arrange
             var products = new List<ProductEntity>
                 {
-                new ProductEntity { Id = 1, Model = "Apple", Price = 200 },
-                new ProductEntity { Id = 2, Model = "Banana", Price = 100 },
-                new ProductEntity { Id = 3, Model = "Cherry", Price = 300 }
+                new ProductEntity { Id = 1, Brand = "Apple", Price = 200 },
+                new ProductEntity { Id = 2, Brand = "Banana", Price = 100 },
+                new ProductEntity { Id = 3, Brand = "Cherry", Price = 300 }
                 };
 
             _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
@@ -314,9 +314,9 @@ namespace ProductProvider.Tests.Services
             var result = await _service.SortProductsAsync(SortOption.Alphabetical);
 
             // Assert
-            Assert.That(result.First().Model, Is.EqualTo("Apple"));
-            Assert.That(result[1].Model, Is.EqualTo("Banana"));
-            Assert.That(result.Last().Model, Is.EqualTo("Cherry"));
+            Assert.That(result.First().Brand, Is.EqualTo("Apple"));
+            Assert.That(result[1].Brand, Is.EqualTo("Banana"));
+            Assert.That(result.Last().Brand, Is.EqualTo("Cherry"));
         }
 
         [Test]
@@ -325,9 +325,9 @@ namespace ProductProvider.Tests.Services
             // Arrange
             var products = new List<ProductEntity>
                 {
-                new ProductEntity { Id = 1, Model = "Apple", Price = 200 },
-                new ProductEntity { Id = 2, Model = "Banana", Price = 100 },
-                new ProductEntity { Id = 3, Model = "Cherry", Price = 300 }
+                new ProductEntity { Id = 1, Brand = "Apple", Price = 200 },
+                new ProductEntity { Id = 2, Brand = "Banana", Price = 100 },
+                new ProductEntity { Id = 3, Brand = "Cherry", Price = 300 }
                 };
 
             _mockRepo.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
@@ -336,9 +336,9 @@ namespace ProductProvider.Tests.Services
             var result = await _service.SortProductsAsync(SortOption.AlphabeticalDescending);
 
             // Assert
-            Assert.That(result.First().Model, Is.EqualTo("Cherry"));
-            Assert.That(result[1].Model, Is.EqualTo("Banana"));
-            Assert.That(result.Last().Model, Is.EqualTo("Apple"));
+            Assert.That(result.First().Brand, Is.EqualTo("Cherry"));
+            Assert.That(result[1].Brand, Is.EqualTo("Banana"));
+            Assert.That(result.Last().Brand, Is.EqualTo("Apple"));
 
         }
 

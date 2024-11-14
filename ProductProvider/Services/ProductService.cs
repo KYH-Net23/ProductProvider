@@ -124,5 +124,13 @@ namespace ProductProvider.Services
             }
             return sortedProducts;
         }
+
+        public async Task<List<ProductEntity>> GetPaginatedProductsAsync(int page, int limit)
+        {
+            int skip = (page - 1) * limit;
+            var products = await _repository.GetAllProductsAsync();
+
+            return products.Skip(skip).Take(limit).ToList();
+        }
     }
 }

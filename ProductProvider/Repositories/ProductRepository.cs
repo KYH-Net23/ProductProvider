@@ -13,6 +13,16 @@ namespace ProductProvider.Repositories
         private readonly ProductDbContext _context = context;
 
 
+
+        public async Task<List<ProductEntity>> GetPaginatedProductsAsync(int skip, int limit)
+        {
+            return await _context.Products
+                .OrderBy(p => p.Id)
+                .Skip(skip)
+                .Take(limit)
+                .ToListAsync();
+        }
+
         public async Task<List<ProductEntity>> SearchProductAsync(string search)
         {
             try

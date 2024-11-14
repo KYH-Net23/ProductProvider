@@ -128,8 +128,9 @@ namespace ProductProvider.Services
         public async Task<List<ProductEntity>> GetPaginatedProductsAsync(int page, int limit)
         {
             int skip = (page - 1) * limit;
+            var products = await _repository.GetAllProductsAsync();
 
-            return await _repository.GetPaginatedProductsAsync(page, limit);
+            return products.Skip(skip).Take(limit).ToList();
         }
     }
 }

@@ -250,13 +250,14 @@ namespace ProductProvider.Tests.Services
         }
 
 
-        // sorting
 
-        [Test]
-        public async Task SortProductsAsync_ShouldSortByPriceAscending()
-        {
-            // Arrange
-            var products = new List<ProductEntity>
+            // sorting
+
+            [Test]
+            public async Task SortProductsAsync_ShouldSortByPriceAscending()
+            {
+                // Arrange
+                var products = new List<ProductEntity>
                 {
                 new ProductEntity { Id = 1, Model = "Product A", Price = 200 },
                 new ProductEntity { Id = 2, Model = "Product B", Price = 100 },

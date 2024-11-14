@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json;
+using ProductProvider.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +28,24 @@ namespace ProductProvider.Tests.Controllers
             _client.Dispose();
         }
 
+        [Test]
+        public async Task SearchProducts_ByValidQuery_ReturnsMatchingProduct()
+        {
+            //Arrange
+            var searchQuery = "Adidas";
+
+            //Act
+            var response = await _client.GetAsync($"/api/searchproducts?query={searchQuery}");
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+
+            var responseContent  = await response.Content.ReadAsStringAsync();
+            var products = JsonConvert.DeserializeObject<List<ProductEntity>>(responseContent);
+
+            Assert.That(products, Is.Not.Empty);
+            Assert.That(products.All(p => p.Brand.Contains(searchQuery) || p.Model.Contains(searchQuery)));
+
+        }
     }
 }

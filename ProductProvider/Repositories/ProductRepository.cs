@@ -28,7 +28,7 @@ namespace ProductProvider.Repositories
             try
             {
                 return await _context.Products
-                .Where(p => p.Brand.Contains(search))
+                .Where(p => p.BrandName.Contains(search))
                 .ToListAsync();
             }
             catch (Exception ex)
@@ -40,7 +40,10 @@ namespace ProductProvider.Repositories
         }
         public async Task<List<ProductEntity>> GetAllProductsAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                .Include(x => x.Category)
+                .ThenInclude(x => x.Sizes)
+                .ToListAsync();
         }
         public async Task<ProductEntity?> GetProductAsync(int id)
         {

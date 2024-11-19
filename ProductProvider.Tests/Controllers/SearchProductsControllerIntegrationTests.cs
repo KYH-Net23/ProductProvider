@@ -45,7 +45,7 @@ namespace ProductProvider.Tests.Controllers
             var products = JsonConvert.DeserializeObject<List<ProductEntity>>(responseContent);
 
             Assert.That(products, Is.Not.Empty);
-            Assert.That(products.All(p => p.Brand.Contains(searchQuery) || p.Model.Contains(searchQuery)));
+            Assert.That(products.All(p => p.BrandName.Contains(searchQuery) || p.ModelName.Contains(searchQuery)));
 
         }
 

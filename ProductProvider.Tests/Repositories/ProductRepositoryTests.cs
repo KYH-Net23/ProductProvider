@@ -21,7 +21,7 @@ namespace ProductProvider.Tests.Repositories
         public async Task GetProduct_ProductExists_ReturnsProduct()
         {
             // Arrange
-            var product = new ProductEntity { Id = 1, Brand = "Prada" };
+            var product = new ProductEntity { Id = 1, BrandName = "Prada" };
             _mockContext.Setup(c => c.Products.FindAsync(1)).ReturnsAsync(product);
 
             // Act
@@ -29,7 +29,7 @@ namespace ProductProvider.Tests.Repositories
 
             // Assert
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Brand, Is.EqualTo("Prada"));
+            Assert.That(result.BrandName, Is.EqualTo("Prada"));
         }
 
         [Test]

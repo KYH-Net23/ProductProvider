@@ -1,9 +1,8 @@
-﻿namespace ProductProvider.Enums
+﻿namespace ProductProvider.Enums;
+
+public enum CategoryName
 {
-    public enum CategoryName
-    {
-        Clothing,
-        Electronics,
-        Shoes
-    }
+    Clothing,
+    Electronics,
+    Shoes
 }

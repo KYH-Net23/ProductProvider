@@ -14,18 +14,21 @@ namespace ProductProvider.Factories
             return new ProductViewModel
             {
                 Id = product.Id,
-                Brand = product.Brand,
-                Model = product.Model,
+                Brand = product.BrandName,
+                Model = product.ModelName,
+                Description = product.Description ?? "Description missing",
                 Price = product.Price,
-                Image = product.Image
+                Image = product.Image,
+                Category = product.Category.CategoryName,
+                Sizes = product.Category.Sizes.Select(x => x.SizeName).ToList()
             };
         }
         public static ProductEntity Create(ProductModel model)
         {
             return new ProductEntity
             {
-                Brand = model.Brand,
-                Model = model.Model,
+                BrandName = model.Brand,
+                ModelName = model.Model,
                 Image = model.Image,
                 Price = model.Price,
                 Description = model.Description,
@@ -37,8 +40,8 @@ namespace ProductProvider.Factories
         {
             return new ProductModel
             {
-                Brand = productEntity.Brand,
-                Model = productEntity.Model,
+                Brand = productEntity.BrandName,
+                Model = productEntity.ModelName,
                 Description = productEntity.Description,
                 Price = productEntity.Price,
                 Category = productEntity.Category,
@@ -48,8 +51,8 @@ namespace ProductProvider.Factories
         }
         public static void MapExistingEntityFromModel(ref ProductEntity entity, ProductModel model)
         {
-            entity.Brand = model.Brand;
-            entity.Model = model.Model;
+            entity.BrandName = model.Brand;
+            entity.ModelName = model.Model;
             entity.Description = model.Description;
             entity.Price = model.Price;
             entity.Category = model.Category;

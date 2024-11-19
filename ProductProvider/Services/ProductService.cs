@@ -111,11 +111,11 @@ namespace ProductProvider.Services
                     break;
 
                 case SortOption.Alphabetical:
-                    sortedProducts = products.OrderBy(p => p.Brand).ToList();
+                    sortedProducts = products.OrderBy(p => p.BrandName).ToList();
                     break;
 
                 case SortOption.AlphabeticalDescending:
-                    sortedProducts = products.OrderByDescending(p => p.Brand).ToList();
+                    sortedProducts = products.OrderByDescending(p => p.BrandName).ToList();
                     break;
 
                 default:

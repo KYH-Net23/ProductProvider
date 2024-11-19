@@ -1,15 +1,15 @@
-﻿using ProductProvider.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProductProvider.Models
+namespace ProductProvider.Models;
+
+public class ProductCategory
 {
-    public class ProductCategory
-    {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public CategoryName Category { get; set; }
-        [Required]
-        public ProductSize SizeType { get; set; }
-    }
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    [MaxLength(50)]
+    public string CategoryName { get; set; } = null!;
+
+    [Required] public ICollection<ProductSize> Sizes { get; set; } = [];
 }

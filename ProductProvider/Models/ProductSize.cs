@@ -8,9 +8,7 @@ namespace ProductProvider.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public SizeType SizeType { get; set; }
-        [Required]
-        public string Value { get; set; } = null!;
+        public string SizeName { get; set; } = null!;
 
     }
 }

@@ -28,8 +28,6 @@ namespace ProductProvider.Factories
                 Model = model.Model,
                 Image = model.Image,
                 Price = model.Price,
-                Size = model.Size,
-                Stock = model.Stock,
                 Description = model.Description,
                 Category = model.Category,
                 AddedDate = model.AddedDate,
@@ -45,8 +43,6 @@ namespace ProductProvider.Factories
                 Price = productEntity.Price,
                 Category = productEntity.Category,
                 Image = productEntity.Image,
-                Stock = productEntity.Stock,
-                Size = productEntity.Size,
                 AddedDate = productEntity.AddedDate,
             };
         }
@@ -58,8 +54,6 @@ namespace ProductProvider.Factories
             entity.Price = model.Price;
             entity.Category = model.Category;
             entity.Image = model.Image;
-            entity.Stock = model.Stock;
-            entity.Size = model.Size;
         }
 
     }

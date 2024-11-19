@@ -10,6 +10,6 @@ namespace ProductProvider.Models
         [Required]
         public CategoryName Category { get; set; }
         [Required]
-        public SizeType SizeType { get; set; }
+        public ProductSize SizeType { get; set; }
     }
 }

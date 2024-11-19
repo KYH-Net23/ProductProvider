@@ -49,7 +49,10 @@ namespace ProductProvider.Repositories
         {
             try
             {
-                return await _context.Products.FindAsync(id);
+                return await _context.Products
+                    .Include(x => x.Category)
+                    .ThenInclude(x => x.Sizes)
+                    .FirstOrDefaultAsync(x => x.Id == id);
             }
             catch
             {

@@ -16,6 +16,9 @@ public class GetProductsController(IProductService service) : ControllerBase
     {
         var productEntities = await _service.GetAllProductsAsync();
 
+        if (productEntities == null)
+            return BadRequest();
+
         var productViewModels = ProductFactory.GetProducts(productEntities);
 
         return Ok(productViewModels);

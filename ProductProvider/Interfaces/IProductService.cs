@@ -5,7 +5,7 @@ namespace ProductProvider.Interfaces
 {
     public interface IProductService
     {
-        Task<string> CreateProductAsync(ProductModel model);
+        Task<string> CreateProductAsync(ProductModel model, ProductCategory category);
         Task<bool> DeleteProductAsync(int id);
         Task<ProductEntity?> GetProductAsync(int id);
         Task<List<ProductEntity>> GetAllProductsAsync();

@@ -23,7 +23,7 @@ namespace ProductProvider.Factories
                 Sizes = product.Category.Sizes.Select(x => x.SizeName).ToList()
             };
         }
-        public static ProductEntity Create(ProductModel model)
+        public static ProductEntity Create(ProductModel model, ProductCategory category)
         {
             return new ProductEntity
             {
@@ -32,11 +32,11 @@ namespace ProductProvider.Factories
                 Image = model.Image,
                 Price = model.Price,
                 Description = model.Description,
-                Category = model.Category,
-                AddedDate = model.AddedDate,
+                Category = category,
+                AddedDate = model.AddedDate
             };
         }
-        public static ProductModel Create(ProductEntity productEntity)
+        public static ProductModel Create(ProductEntity productEntity, ProductCategory category)
         {
             return new ProductModel
             {
@@ -44,18 +44,18 @@ namespace ProductProvider.Factories
                 Model = productEntity.ModelName,
                 Description = productEntity.Description,
                 Price = productEntity.Price,
-                Category = productEntity.Category,
+                Category = null,
                 Image = productEntity.Image,
                 AddedDate = productEntity.AddedDate,
             };
         }
-        public static void MapExistingEntityFromModel(ref ProductEntity entity, ProductModel model)
+        public static void MapExistingEntityFromModel(ref ProductEntity entity, ProductModel model, ProductCategory category)
         {
             entity.BrandName = model.Brand;
             entity.ModelName = model.Model;
             entity.Description = model.Description;
             entity.Price = model.Price;
-            entity.Category = model.Category;
+            entity.Category = category;
             entity.Image = model.Image;
         }
 

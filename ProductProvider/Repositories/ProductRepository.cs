@@ -62,8 +62,11 @@ namespace ProductProvider.Repositories
         public async Task<ProductModel> GetProductById(Expression<Func<ProductEntity, bool>> expression)
         {
 
-            var entity = await _context.Products.FirstOrDefaultAsync(expression);
-            return (entity != null) ? ProductFactory.Create(entity) : null!;
+            var entity = await _context
+                .Products
+                .Include(x => x.Category)
+                .FirstOrDefaultAsync(expression);
+            return (entity != null) ? ProductFactory.Create(entity, entity.Category) : null!;
         }
         public async Task<bool> SaveAsync()
         {

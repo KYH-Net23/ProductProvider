@@ -45,7 +45,7 @@ namespace ProductProvider.Services
 
                 if (existingProductEntity != null)
                 {
-                    ProductFactory.MapExistingEntityFromModel(ref existingProductEntity, model);
+                    ProductFactory.MapExistingEntityFromModel(ref existingProductEntity, model, null);
                     var result = await _repository.SaveAsync();
                     if (result)
                     {
@@ -63,15 +63,15 @@ namespace ProductProvider.Services
                 return 2; 
             }
         }
-        public async Task<string> CreateProductAsync(ProductModel model)
+        public async Task<string> CreateProductAsync(ProductModel model, ProductCategory category)
         {
             try
             {
-                var entity = ProductFactory.Create(model);
+                var entity = ProductFactory.Create(model, category);
                 entity.AddedDate = DateOnly.FromDateTime(DateTime.Now);
                 try
                 {
-                    var result = await _repository.SaveAsync(entity);
+                    await _repository.SaveAsync(entity);
                     return ResultResponse.Success;
                 }
                 catch

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductProvider.Contexts;
 using ProductProvider.Interfaces;
@@ -16,7 +15,7 @@ namespace ProductProvider.Controllers
         public async Task<ActionResult> CreateProduct(ProductModel model)
         {
             var productCategory = await context.Categories
-                .FirstOrDefaultAsync(x => x.CategoryName.ToLower() == model.Category.ToLower());
+                .FirstOrDefaultAsync(x => x.CategoryName == model.Category);
             if (productCategory == null)
             {
                 return BadRequest(new {ModelState});
